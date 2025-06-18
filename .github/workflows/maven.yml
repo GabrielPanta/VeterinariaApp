@@ -53,5 +53,19 @@ jobs:
     - name: Compilar sin ejecutar pruebas
       run: mvn clean install -DskipTests
 
+  docker-release:
+    needs: build
+    runs-on: ubuntu-latest
 
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Publicar imagen Docker con semantic release
+      uses: timo-reymann/docker-semantic-release-gh-action@v2
+      with:
+        image: user/imagename
+        dockerhub_username: ${{ secrets.gabrielpantadocker }}
+        dockerhub_token: ${{ secrets.gaborocker778 }}
+        github_token: ${{ secrets.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 }}
 
