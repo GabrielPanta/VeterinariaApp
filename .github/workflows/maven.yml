@@ -66,6 +66,6 @@ jobs:
       with:
         image: user/imagename
         dockerhub_username: ${{ secrets.gabrielpantadocker }}
-        dockerhub_token: ${{ secrets.gaborocker778 }}
+        dockerhub_token: ${{ secrets.dckr_pat_hVPWgV5O1xXm9TTG7hkMdlVjqZ8 }}
         github_token: ${{ secrets.GH_TOKEN }}
 
