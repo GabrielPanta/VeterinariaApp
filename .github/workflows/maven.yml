@@ -54,7 +54,7 @@ jobs:
       run: mvn clean install -DskipTests
 
   docker-release:
-  
+
     needs: build
     runs-on: ubuntu-latest
 
@@ -77,5 +77,6 @@ jobs:
         dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
         dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
         github_token: ${{ secrets.GH_TOKEN }}
+
 
 
