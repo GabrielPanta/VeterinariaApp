@@ -53,6 +53,11 @@ jobs:
     - name: Compilar sin ejecutar pruebas
       run: mvn clean install -DskipTests
 
+    - name: Guardar artefacto del .jar
+      uses: actions/upload-artifact@v4
+      with:
+          name: veterinaria-jar
+          path: target/VeterinariaApp-0.0.1-SNAPSHOT.jar
    
   docker-release:
     needs: build
