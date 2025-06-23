@@ -1,5 +1,8 @@
 module.exports = {
-  branches: ['main'],
+  branches: [
+    'main',
+    { name: 'release/*', channel: 'release', prerelease: false }
+  ],
   repositoryUrl: 'https://github.com/GabrielPanta/VeterinariaApp.git',
   plugins: [
     '@semantic-release/commit-analyzer',
@@ -7,3 +10,4 @@ module.exports = {
     '@semantic-release/github'
   ]
 }
+
