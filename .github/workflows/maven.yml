@@ -64,8 +64,7 @@ jobs:
     - name: Publicar imagen Docker con semantic release
       uses: timo-reymann/docker-semantic-release-gh-action@v2
       with:
-        image: user/imagename
+        image: GabrielPanta/VeterinariaApp
         dockerhub_username: ${{ secrets.gabrielpantadocker }}
         dockerhub_token: ${{ secrets.dckr_pat_hVPWgV5O1xXm9TTG7hkMdlVjqZ8 }}
         github_token: ${{ secrets.GH_TOKEN }}
-
