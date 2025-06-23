@@ -54,6 +54,7 @@ jobs:
       run: mvn clean install -DskipTests
 
   docker-release:
+  
     needs: build
     runs-on: ubuntu-latest
 
@@ -63,6 +64,12 @@ jobs:
       with:
         token: ${{ secrets.GH_TOKEN }}
 
+    - name: Configurar usuario Git y URL remota
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/GabrielPanta/VeterinariaApp.git
+
     - name: Publicar imagen Docker con semantic release
       uses: timo-reymann/docker-semantic-release-gh-action@v2
       with:
@@ -70,3 +77,5 @@ jobs:
         dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
         dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
         github_token: ${{ secrets.GH_TOKEN }}
+
+
