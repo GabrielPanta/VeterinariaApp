@@ -14,13 +14,23 @@ jobs:
 
     steps:
 
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Java y Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Compilar proyecto y construir el .jar
+        run: mvn clean package -DskipTests
+
       - name: Guardar artefacto del .jar
         uses: actions/upload-artifact@v4
         with:
           name: veterinaria-jar
           path: target/VeterinariaApp-0.0.1-SNAPSHOT.jar
-      - name: Checkout código
-        uses: actions/checkout@v4
 
       - name: Descargar artefacto del .jar
         uses: actions/download-artifact@v4
@@ -44,3 +54,4 @@ jobs:
 
       - name: Subir imagen Docker
         run: docker push gabrielpantadocker/veterinariaapp:latest
+
