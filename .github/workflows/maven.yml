@@ -53,43 +53,6 @@ jobs:
     - name: Compilar sin ejecutar pruebas
       run: mvn clean install -DskipTests
 
-    - name: Guardar artefacto del .jar
-      uses: actions/upload-artifact@v4
-      with:
-          name: veterinaria-jar
-          path: target/VeterinariaApp-0.0.1-SNAPSHOT.jar
-   
-  docker-release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout código
-        uses: actions/checkout@v4
-
-      - name: Descargar artefacto del .jar
-        uses: actions/download-artifact@v4
-        with:
-          name: veterinaria-jar
-
-      - name: Verificar archivo descargado
-        run: ls -lh
-
-      - name: Renombrar el .jar
-        run: mv VeterinariaApp-0.0.1-SNAPSHOT.jar app.jar
-
-      - name: Login a DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Construir imagen Docker
-        run: docker build -t gabrielpantadocker/veterinariaapp:latest .
-
-      - name: Subir imagen Docker
-        run: docker push gabrielpantadocker/veterinariaapp:latest
-
 
 
 
