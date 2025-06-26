@@ -19,7 +19,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   @NotBlank
+    @NotBlank
     private String nombre;
 
     @NotBlank
@@ -73,5 +73,4 @@ public class Usuario {
         this.rol = rol;
     }
 
-    
 }

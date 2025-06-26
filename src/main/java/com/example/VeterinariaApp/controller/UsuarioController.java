@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
+
     @Autowired
     private UsuarioService usuarioService;
 
@@ -25,4 +26,5 @@ public class UsuarioController {
         Usuario nuevoUsuario = usuarioService.registrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con éxito");
     }
+    
 }

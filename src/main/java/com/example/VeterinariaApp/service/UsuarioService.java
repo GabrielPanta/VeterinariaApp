@@ -19,6 +19,8 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     public Usuario registrar(UsuarioDTO dto) {
+
+        // Validar duplicidad de email
         if (usuarioRepository.existsByEmail(dto.getEmail())) {
             throw new RuntimeException("El email ya está registrado");
         }
