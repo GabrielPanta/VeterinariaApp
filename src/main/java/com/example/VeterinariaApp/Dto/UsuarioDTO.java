@@ -1,14 +1,18 @@
 package com.example.VeterinariaApp.Dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UsuarioDTO {
 
-    
+    @NotBlank
     private String nombre;
 
-   
+   @Email
+    @NotBlank
     private String email;
 
-  
+    @NotBlank
     private String password;
 
 
