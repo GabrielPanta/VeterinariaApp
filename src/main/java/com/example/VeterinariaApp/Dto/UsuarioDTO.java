@@ -8,7 +8,7 @@ public class UsuarioDTO {
     @NotBlank
     private String nombre;
 
-   @Email
+    @Email
     @NotBlank
     private String email;
 

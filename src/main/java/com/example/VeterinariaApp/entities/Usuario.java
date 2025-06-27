@@ -22,8 +22,9 @@ public class Usuario {
     @NotBlank
     private String nombre;
 
-    @NotBlank
+    
     @Email
+    @NotBlank
     @Column(unique = true)
     private String email;
 
