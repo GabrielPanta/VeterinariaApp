@@ -1,8 +1,10 @@
 package com.example.VeterinariaApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.VeterinariaApp.Dto.UsuarioDTO;
 import com.example.VeterinariaApp.entities.Rol;
@@ -22,7 +24,7 @@ public class UsuarioService {
 
         // Validar duplicidad de email
         if (usuarioRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("El email ya está registrado");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El email ya está registrado");
         }
 
         Usuario usuario = new Usuario();
