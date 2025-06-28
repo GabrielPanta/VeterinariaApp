@@ -52,6 +52,11 @@ jobs:
 
     - name: Compilar y ejecutar pruebas
       run: mvn clean install
+      
+    - name: Mostrar logs de tests si falla
+      if: failure()
+      run: cat target/surefire-reports/*.txt
+
 
 
 
