@@ -23,7 +23,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // Filtro que valida el JWT en cada request
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
