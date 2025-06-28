@@ -50,8 +50,8 @@ jobs:
         echo "DB_USER=root" >> $GITHUB_ENV
         echo "DB_PASS= " >> $GITHUB_ENV
 
-    - name: Compilar sin ejecutar pruebas
-      run: mvn clean install -DskipTests
+    - name: Compilar y ejecutar pruebas
+      run: mvn clean install
 
 
 
