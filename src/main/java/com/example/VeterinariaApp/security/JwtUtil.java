@@ -10,7 +10,7 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
-     private final String SECRET_KEY = "clave-secreta-para-mi-api-veterinaria123456";
+     private final String SECRET_KEY = "clave-secreta-para-mi-api-veterinaria1234567";
 
     public String generarToken(String email) {
         return Jwts.builder()
