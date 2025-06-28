@@ -7,9 +7,9 @@ public class UsuarioDTO {
 
     @NotBlank
     private String nombre;
-
-    @Email
+   
     @NotBlank
+    @Email  
     private String email;
 
     @NotBlank
