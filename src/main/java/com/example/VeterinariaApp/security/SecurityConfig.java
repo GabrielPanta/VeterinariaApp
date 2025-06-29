@@ -3,6 +3,7 @@ package com.example.VeterinariaApp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,7 +30,9 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/usuarios").hasRole("ADMIN")
                         .anyRequest().authenticated())
+                        
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .build();

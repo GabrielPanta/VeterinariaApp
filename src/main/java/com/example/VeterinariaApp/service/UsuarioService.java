@@ -1,6 +1,8 @@
 package com.example.VeterinariaApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,9 +33,17 @@ public class UsuarioService {
         usuario.setNombre(dto.getNombre());
         usuario.setEmail(dto.getEmail());
         usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
-        usuario.setRol(Rol.CLIENTE);
+        usuario.setRol(Rol.ADMIN);
 
         return usuarioRepository.save(usuario);
     }
+
+    public Page<Usuario> listarUsuarios(String nombre, Pageable pageable) {
+        if (nombre != null && !nombre.isBlank()) {
+            return usuarioRepository.findByNombreContainingIgnoreCase(nombre, pageable);
+        }
+        return usuarioRepository.findAll(pageable);
+    }
+
 
 }
