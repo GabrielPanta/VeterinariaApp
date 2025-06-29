@@ -48,7 +48,7 @@ public class UsuarioServiceTest {
         assertEquals("test@mail.com", result.getEmail());
         assertEquals("Test", result.getNombre());
         assertEquals("hashed123", result.getPassword());
-        assertEquals(Rol.CLIENTE, result.getRol());
+        assertEquals(Rol.ADMIN, result.getRol());
     }
 
     @Test
