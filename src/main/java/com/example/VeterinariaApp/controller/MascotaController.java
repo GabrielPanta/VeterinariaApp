@@ -22,7 +22,7 @@ public class MascotaController {
     private MascotaService mascotaService;
 
     @PostMapping
-    @PreAuthorize("hasRole('CLIENTE')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> registrar(@Valid @RequestBody MascotaDTO dto, Authentication auth) {
         String email = auth.getName(); // Email extraído del token JWT
         mascotaService.registrarMascota(dto, email);
