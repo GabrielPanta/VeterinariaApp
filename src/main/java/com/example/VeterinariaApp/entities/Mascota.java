@@ -22,8 +22,9 @@ public class Mascota {
 
     private Integer edad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    
     @JoinColumn(name = "usuario_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
     public Long getId() {
