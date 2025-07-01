@@ -54,7 +54,7 @@ public class MascotaServiceTest {
         assertEquals("Rocky", resultado.getNombre());
         assertEquals("Labrador", resultado.getRaza());
         assertEquals(3, resultado.getEdad());
-        assertEquals(usuario, resultado.getUsuario());
+        assertEquals(usuario, resultado.getCliente());
     }
 
     @Test
