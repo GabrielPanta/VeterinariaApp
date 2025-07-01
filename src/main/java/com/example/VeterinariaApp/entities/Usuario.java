@@ -1,5 +1,8 @@
 package com.example.VeterinariaApp.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,6 +10,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -34,6 +38,9 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Rol rol = Rol.CLIENTE; // Enum por defecto
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Mascota> mascotas;
+    
     public Long getId() {
         return id;
     }
@@ -72,6 +79,14 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
     }
 
 }
