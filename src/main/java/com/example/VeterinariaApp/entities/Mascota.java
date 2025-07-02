@@ -1,32 +1,49 @@
 package com.example.VeterinariaApp.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "mascotas")
 public class Mascota {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String nombre;
 
+    @Column
     private String raza;
 
+    @Column
     private Integer edad;
 
-    
-    @JoinColumn(name = "usuario_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Usuario usuario;
+    @Column(nullable = false)
+    private String tipo;
 
+    @Column(nullable = false)
+    private Boolean estado = true;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Usuario cliente;
+
+    // Constructor vacío
+    public Mascota() {
+    }
+
+    // Constructor con argumentos
+    public Mascota(String nombre, String tipo, Usuario cliente) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.cliente = cliente;
+    }
+
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -59,13 +76,29 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public Boolean getEstado() {
+    return estado;
 }
+
+public void setEstado(Boolean estado) {
+    this.estado = estado;
+}
+
+}
+

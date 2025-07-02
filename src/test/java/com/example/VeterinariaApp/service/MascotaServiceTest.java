@@ -22,6 +22,7 @@ import com.example.VeterinariaApp.repository.UsuarioRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class MascotaServiceTest {
+
     @InjectMocks
     private MascotaService mascotaService;
 
@@ -54,7 +55,7 @@ public class MascotaServiceTest {
         assertEquals("Rocky", resultado.getNombre());
         assertEquals("Labrador", resultado.getRaza());
         assertEquals(3, resultado.getEdad());
-        assertEquals(usuario, resultado.getUsuario());
+        assertEquals(usuario, resultado.getCliente()); // 🔁 CAMBIADO: getUsuario() → getCliente()
     }
 
     @Test
@@ -74,3 +75,4 @@ public class MascotaServiceTest {
         assertEquals("Usuario no encontrado", ex.getMessage());
     }
 }
+
