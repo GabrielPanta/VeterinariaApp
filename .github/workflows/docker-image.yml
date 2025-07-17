@@ -36,6 +36,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: veterinaria-jar
+          path: .   # 👈 descarga directamente en el contexto del Dockerfile
 
       - name: Verificar archivo descargado
         run: ls -lh
