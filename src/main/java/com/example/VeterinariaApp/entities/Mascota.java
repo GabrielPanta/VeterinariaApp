@@ -28,6 +28,10 @@ public class Mascota {
     @JoinColumn(name = "cliente_id", nullable = false)
     private Usuario cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    
     // Constructor vacío
     public Mascota() {
     }
