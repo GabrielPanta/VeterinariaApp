@@ -43,4 +43,23 @@ public class MascotaController {
         List<MascotaDTO> mascotas = mascotaService.obtenerMascotasPorCliente(username);
         return ResponseEntity.ok(mascotas);
     }
+
+    @PreAuthorize("hasAnyRole('CLIENTE', 'ADMIN')")
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarMascota(@PathVariable Long id, @Valid @RequestBody MascotaDTO dto,
+            Authentication auth) {
+        String email = auth.getName();
+        mascotaService.actualizarMascota(id, dto, email);
+        return ResponseEntity.ok("Mascota actualizada con éxito");
+    }
+
+    @PreAuthorize("hasAnyRole('CLIENTE', 'ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarMascota(@PathVariable Long id, Authentication auth) {
+        String email = auth.getName();
+        mascotaService.eliminarMascota(id, email);
+        return ResponseEntity.ok("Mascota eliminada correctamente");
+    }
+
+
 }

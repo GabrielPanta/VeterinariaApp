@@ -29,7 +29,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?> registrar(@Valid @RequestBody UsuarioDTO dto) {
-        Usuario nuevoUsuario = usuarioService.registrar(dto);
+         usuarioService.registrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con éxito");
     }
 
