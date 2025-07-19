@@ -30,7 +30,8 @@ public class MascotaService {
         mascota.setNombre(dto.getNombre());
         mascota.setRaza(dto.getRaza());
         mascota.setEdad(dto.getEdad());
-        mascota.setCliente(usuario);
+        mascota.setTipo(dto.getTipo());
+        mascota.setUsuario(usuario);
 
         return mascotaRepository.save(mascota);
     }
@@ -39,9 +40,9 @@ public class MascotaService {
         Usuario usuario = usuarioRepository.findByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-        List<Mascota> mascotas = mascotaRepository.findByCliente(usuario);
+        List<Mascota> mascotas = mascotaRepository.findByUsuarioId(usuario.getId());
         return mascotas.stream()
-            .map(m -> new MascotaDTO(m.getId(), m.getNombre(), m.getTipo()))
+            .map(m -> new MascotaDTO(m.getId(), m.getNombre(), m.getTipo(), m.getRaza(), m.getEdad()))
             .collect(Collectors.toList());
     }
 }

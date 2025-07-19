@@ -20,12 +20,16 @@ public class MascotaController {
     @Autowired
     private MascotaService mascotaService;
 
-    @PostMapping
+    
     @PreAuthorize("hasAnyRole('CLIENTE', 'ADMIN')")
+    @PostMapping
     public ResponseEntity<?> registrar(@Valid @RequestBody MascotaDTO dto, Authentication auth) {
         String email = auth.getName(); // Email extraído del token JWT
         mascotaService.registrarMascota(dto, email);
+        System.out.println("Autenticado: " + auth.getName());
+        System.out.println("Roles: " + auth.getAuthorities());
         return ResponseEntity.status(HttpStatus.CREATED).body("Mascota registrada con éxito");
+        
     }
 
     // 📤 Obtener mascotas del cliente autenticado

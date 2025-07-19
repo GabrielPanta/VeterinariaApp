@@ -23,10 +23,12 @@ public class MascotaDTO {
     public MascotaDTO() {
     }
 
-    public MascotaDTO(Long id, String nombre, String tipo) {
+    public MascotaDTO(Long id, String nombre, String tipo,String raza,Integer edad) {
         this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
+        this.raza=raza;
+        this.edad = edad;
     }
 
     public Long getId() {

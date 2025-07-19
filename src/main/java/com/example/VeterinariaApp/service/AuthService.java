@@ -30,6 +30,6 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Contraseña incorrecta");
         }
 
-        return jwtUtil.generarToken(usuario.getEmail());
+        return jwtUtil.generarToken(usuario.getEmail(), usuario.getRol().toString());
     }
 }
