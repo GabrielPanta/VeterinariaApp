@@ -24,10 +24,7 @@ public class Mascota {
     @Column(nullable = false)
     private String tipo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Usuario cliente;
-
+    
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -37,10 +34,9 @@ public class Mascota {
     }
 
     // Constructor con argumentos
-    public Mascota(String nombre, String tipo, Usuario cliente) {
+    public Mascota(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.cliente = cliente;
     }
 
     // Getters y Setters
@@ -83,13 +79,12 @@ public class Mascota {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public Usuario getUsuario() {
+    return usuario;
+}
 
-    public Usuario getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
+public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+}
 }
 
