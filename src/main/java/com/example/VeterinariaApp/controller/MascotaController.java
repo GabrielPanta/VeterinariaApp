@@ -32,7 +32,7 @@ public class MascotaController {
         
     }
 
-    // 📤 Obtener mascotas del cliente autenticado
+    // 📤 Obtener mascotas del cliente autenticadoooo
     @GetMapping("/mis")
     @Operation(
         summary = "Listar mascotas del cliente autenticado",
