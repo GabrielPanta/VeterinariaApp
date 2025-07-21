@@ -1,5 +1,6 @@
 package com.example.VeterinariaApp.service;
 
+import com.example.VeterinariaApp.Dto.AtencionUpdateDTO;
 import com.example.VeterinariaApp.Dto.AtencionVeterinariaDTO;
 import com.example.VeterinariaApp.entities.*;
 import com.example.VeterinariaApp.repository.*;
@@ -66,6 +67,36 @@ public class AtencionVeterinariaService {
         atencion.setFechaAtencion(LocalDateTime.now());
         atencion.setDiagnostico(dto.getDiagnostico());
         atencion.setTratamientos(dto.getTratamientos());
+
+        return atencionRepository.save(atencion);
+    }
+    // Nuevo método para actualizar atención (HU13)
+    @Transactional
+    public AtencionVeterinaria actualizarDiagnosticoTratamiento(
+            Long atencionId, AtencionUpdateDTO dto, String emailVeterinario) {
+
+        AtencionVeterinaria atencion = atencionRepository.findById(atencionId)
+                .orElseThrow(() -> new RuntimeException("Atención veterinaria no encontrada."));
+
+        Veterinario veterinarioAutenticado = veterinarioRepository.findByEmail(emailVeterinario)
+                .orElseThrow(() -> new RuntimeException("Veterinario autenticado no encontrado."));
+
+        // Validar que el veterinario autenticado es el que registró esta atención
+        if (!atencion.getVeterinario().getId().equals(veterinarioAutenticado.getId())) {
+            throw new RuntimeException("No tiene permisos para actualizar esta atención.");
+        }
+
+        // Actualizar campos
+        if (dto.getDiagnostico() != null) {
+            atencion.setDiagnostico(dto.getDiagnostico());
+        }
+        if (dto.getTratamientos() != null) {
+            atencion.setTratamientos(dto.getTratamientos());
+        }
+
+        // Puedes añadir aquí validaciones de campos clínicos si necesitas lógica compleja,
+        // por ejemplo, si un diagnóstico no puede estar vacío si ya se ha registrado.
+        // Las validaciones de tamaño ya están en el DTO con @Size.
 
         return atencionRepository.save(atencion);
     }
