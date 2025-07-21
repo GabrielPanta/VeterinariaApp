@@ -20,10 +20,14 @@ public class Cita {
 
     private LocalDateTime fecha;
 
-    private String estado; // PENDIENTE, ATENDIDA, CANCELADA
+    private String estado; // PENDIENTE, ATENDIDA, CANCELADA, etc.
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "veterinario_id")
+    private Veterinario veterinario;
 }
 
